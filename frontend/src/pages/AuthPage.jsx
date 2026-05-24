@@ -36,7 +36,7 @@ export default function AuthPage() {
         await authApi.signup(username, password)
       }
       const data = await authApi.login(username, password)
-      login(data.access_token, username)
+      login(data.access_token, username, data.user_id)
       navigate('/', { replace: true })
     } catch (err) {
       setError(err.message)

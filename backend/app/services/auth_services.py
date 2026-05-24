@@ -46,4 +46,9 @@ def login_user(data: LoginRequest, db: Session) -> TokenResponse:
 
     token = create_access_token({"sub": user.username, "user_id": user.id})
 
-    return TokenResponse(access_token=token)
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "user_id": user.id,       # ← YE NAYA HAI
+        "username": user.username  # ← YE BHI NAYA HAI
+    }
