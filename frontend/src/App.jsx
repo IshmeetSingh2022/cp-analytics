@@ -7,6 +7,7 @@ import AnalysisPage  from './pages/AnalysisPage'
 import ProgressPage  from './pages/ProgressPage'
 import RecommendPage from './pages/RecommendPage'
 import StatsPage     from './pages/StatsPage'
+import ProfilePage   from './pages/ProfilePage'
 
 // ── Protected layout ─────────────────────────────────────────────
 function AppLayout() {
@@ -23,6 +24,7 @@ function AppLayout() {
           <Route path="/progress"  element={<ProgressPage />} />
           <Route path="/recommend" element={<RecommendPage />}/>
           <Route path="/stats"     element={<StatsPage />}    />
+          <Route path="/profile"   element={<ProfilePage />}  />
           <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </main>
