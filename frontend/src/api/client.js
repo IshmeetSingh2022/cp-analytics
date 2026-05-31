@@ -3,10 +3,9 @@ import axios from 'axios'
 // Axios ka ek instance bana rahe hain
 // baseURL '/api' hai jo Vite proxy se localhost:8000 pe jaata hai
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}` : '/api',
   headers: { 'Content-Type': 'application/json' },
 })
-
 // Request interceptor — har request se pehle chalta hai
 // localStorage se token nikaalkar Authorization header mein daalte hain
 api.interceptors.request.use(config => {
