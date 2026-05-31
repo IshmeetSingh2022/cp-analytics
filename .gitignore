@@ -1,27 +1,29 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
 .Python
+*.egg
 *.egg-info/
 dist/
 build/
+.eggs/
+
+# Virtual environment
 .venv/
 venv/
 env/
 
-# Env files (keep .env.example, ignore .env)
-backend/.env
-frontend/.env
+# Environment variables
 .env
+*.env
 
-# Node
-node_modules/
-frontend/dist/
-frontend/.vite/
+# Database
+*.db
+*.sqlite3
 
-# Docker
+# Logs
 *.log
 
 # OS
@@ -31,3 +33,18 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+dist/
+.npm
+
+# Vite
+frontend/dist/
+frontend/.vite/
+
+# Alembic
+# Keep migrations but ignore pycache inside
+backend/alembic/versions/__pycache__/
