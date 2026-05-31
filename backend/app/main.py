@@ -15,7 +15,6 @@ app = FastAPI(
     description="AI-powered Competitive Programming Analytics Platform",
     version="1.0.0",
 )
-
 # --- Middleware ---
 app.add_middleware(
     CORSMiddleware,
@@ -28,10 +27,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.add_middleware(BaseHTTPMiddleware, dispatch=logging_middleware)
 app.add_middleware(BaseHTTPMiddleware, dispatch=auth_middleware)
-
 # --- Database ---
 @app.on_event("startup")
 def create_tables():
