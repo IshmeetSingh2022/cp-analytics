@@ -17,11 +17,17 @@ app = FastAPI(
 )
 
 # --- Middleware ---
-allow_origins=[
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://cp-analytics-lovat.vercel.app",
-],
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://cp-analytics-lovat.vercel.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.add_middleware(BaseHTTPMiddleware, dispatch=logging_middleware)
 app.add_middleware(BaseHTTPMiddleware, dispatch=auth_middleware)
