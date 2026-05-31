@@ -12,12 +12,11 @@ export default function StatsPage() {
   const { userId } = useAuth()
   const { data, loading, error, execute } = useFetch(statsApi.getUserStats)
 
-  // Auto-load on mount
   useEffect(() => { execute(userId) }, [userId])
 
-  const totalSolved   = data?.reduce((s, d) => s + d.correct, 0) ?? 0
+  const totalCorrect  = data?.reduce((s, d) => s + d.correct, 0) ?? 0
   const totalAttempts = data?.reduce((s, d) => s + d.solved,  0) ?? 0
-  const overallAcc    = totalAttempts ? totalSolved / totalAttempts : 0
+  const overallAcc    = totalAttempts ? totalCorrect / totalAttempts : 0
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -38,7 +37,7 @@ export default function StatsPage() {
           {/* Summary */}
           <div className="grid grid-cols-3 gap-4">
             <StatCard label="Days Tracked"  value={data.length} />
-            <StatCard label="Total Solved"  value={totalSolved}  accent />
+            <StatCard label="Total Solved"  value={totalCorrect} accent />
             <StatCard label="Overall Acc."  value={`${Math.round(overallAcc * 100)}%`} />
           </div>
 

@@ -1,16 +1,18 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { RatingBadge } from './UI'
-// NAV_ITEMS array mein add karo — Profile ke baad:
+
 const NAV_ITEMS = [
-  { to: '/',          icon: '◈', label: 'Dashboard'     },
-  { to: '/analysis',  icon: '◎', label: 'Analysis'      },
-  { to: '/progress',  icon: '▲', label: 'Progress'      },
-  { to: '/recommend', icon: '⬡', label: 'Recommend'     },
-  { to: '/stats',     icon: '▬', label: 'My Stats'      },
-  { to: '/profile',   icon: '◉', label: 'Profile'       },
-  { to: '/topics',    icon: '☰', label: 'Topic Tracker' },  // ✅ NAYA
+  { to: '/',           icon: '◈', label: 'Dashboard'     },
+  { to: '/analysis',   icon: '◎', label: 'Analysis'      },
+  { to: '/progress',   icon: '▲', label: 'Progress'      },
+  { to: '/recommend',  icon: '⬡', label: 'Recommend'     },
+  { to: '/stats',      icon: '▬', label: 'My Stats'      },
+  { to: '/profile',    icon: '◉', label: 'Profile'       },
+  { to: '/topics',     icon: '☰', label: 'Topic Tracker' },
+  { to: '/readiness',  icon: '◎', label: 'Readiness'     },
 ]
+
 export default function Sidebar() {
   const { username, logout } = useAuth()
 
@@ -37,8 +39,8 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Nav links */}
-      <nav className="flex-1 py-4 flex flex-col gap-1 px-3">
+      {/* Nav links — overflow-y-auto add kiya ✅ */}
+      <nav className="flex-1 py-4 flex flex-col gap-1 px-3 overflow-y-auto">
         {NAV_ITEMS.map(({ to, icon, label }) => (
           <NavLink
             key={to}

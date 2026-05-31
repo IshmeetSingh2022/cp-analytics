@@ -4,9 +4,9 @@ from datetime import datetime
 from app.dependencies.database import get_db
 from app.models.submission import Submission
 from app.services.analytics_service import get_analysis, get_progress
-from app.services.codeforces_service import fetch_user_submissions
+from app.services.codeforces_service import fetch_user_submissions,fetch_user_rating
 from app.services.submission import process_submission
-
+from app.services.readiness import calculate_readiness
 router = APIRouter(prefix="/user", tags=["User"])
 
 
@@ -56,3 +56,17 @@ def progress(handle: str, db: Session = Depends(get_db)):
     """
     subs = _fetch_and_store(handle, db)
     return get_progress(subs)
+
+@router.get("/readiness/{handle}")
+def readiness(handle: str, db: Session = Depends(get_db)):
+    
+    try:
+        cf_rating = fetch_user_rating(handle)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Failed to fetch CF rating: {exc}"
+        )
+
+    subs = _fetch_and_store(handle, db)
+    return calculate_readiness(subs, cf_rating)

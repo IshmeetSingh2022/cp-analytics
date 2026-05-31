@@ -8,8 +8,8 @@ import ProgressPage  from './pages/ProgressPage'
 import RecommendPage from './pages/RecommendPage'
 import StatsPage     from './pages/StatsPage'
 import ProfilePage   from './pages/ProfilePage'
-import TopicTracker  from './pages/Topic_tracker'   // ✅ NAYA
-
+import TopicTracker  from './pages/Topic_tracker'   
+import ReadinessPage from './pages/ReadinessPage'
 function AppLayout() {
   const { token } = useAuth()
   if (!token) return <Navigate to="/login" replace />
@@ -25,7 +25,8 @@ function AppLayout() {
           <Route path="/recommend" element={<RecommendPage />} />
           <Route path="/stats"     element={<StatsPage />}     />
           <Route path="/profile"   element={<ProfilePage />}   />
-          <Route path="/topics"    element={<TopicTracker />}  />  {/* ✅ NAYA */}
+          <Route path="/topics"    element={<TopicTracker />}  />
+          <Route path="/readiness" element={<ReadinessPage />} />
           <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </main>

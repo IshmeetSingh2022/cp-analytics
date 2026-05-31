@@ -37,10 +37,7 @@ export const recommendApi = {
 
 // ── Daily stats (/stats) ─────────────────────────────────────────
 export const statsApi = {
-  /**
-   * GET /stats/{user_id}
-   * → [{ date, solved, correct }, ...]
-   */
+
   getUserStats: (userId) => api.get(`/stats/${userId}`),
 }
 
@@ -58,4 +55,12 @@ export const profileApi = {
 export const topicApi = {
   // GET /topics/tracker → har topic ka solved status
   getTracker: () => api.get('/topics/tracker'),
+}
+
+
+
+export const readinessApi = {
+  getReadiness: (handle) =>
+    api.get(`/user/readiness/${handle}`)
+   
 }
