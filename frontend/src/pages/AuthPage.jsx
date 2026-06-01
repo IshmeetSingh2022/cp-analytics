@@ -127,7 +127,7 @@ export default function AuthPage() {
       </div>
 
       <p className="mt-6 font-mono text-xs text-void-400 animate-fade-in">
-        API: <span className="text-brand-500">http://localhost:8000</span>
+      API: <span className="text-brand-500">{import.meta.env.VITE_API_URL || 'http://localhost:8000'}</span>
       </p>
     </div>
   )
