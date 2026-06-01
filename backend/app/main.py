@@ -6,7 +6,8 @@ from app.core.database import Base, engine
 from app.middleware.auth import auth_middleware
 from app.middleware.logging import logging_middleware
 from app.api.profile import router as profile_router
-import app.models
+
+
 
 from app.api import auth, routes_user, recommendation, stats, topic_tracker
 
@@ -36,6 +37,11 @@ def root():
     return {"message": "CP Analytics AI backend running 🚀"}
 
 # --- Routers ---
+@app.get("/admin/seed")
+def seed():
+    from scripts.fetch_problems import seed_problems
+    count = seed_problems()
+    return {"inserted": count}
 app.include_router(auth.router)
 app.include_router(routes_user.router)
 app.include_router(recommendation.router)
