@@ -11,8 +11,8 @@ PUBLIC_ROUTES = {
     "/docs",
     "/openapi.json",
     "/redoc",
+    "/admin/seed",
 }
-
 
 async def auth_middleware(request: Request, call_next):
     if request.method == "OPTIONS":
